@@ -1,4 +1,7 @@
 api 명세서 : https://tar-gazelle-0fd.notion.site/API-eb894553888f483d8f2c37ea5e568448<p>
+
+도메인 주소 : freakj.shop:3000 입니다.
+
 [데이터베이스.pdf](https://github.com/user-attachments/files/16966361/Untitled.pdf)
 1. **암호화 방식**
     - 비밀번호를 DB에 저장할 때 Hash를 이용했는데, Hash는 단방향 암호화와 양방향 암호화 중 어떤 암호화 방식에 해당할까요?
