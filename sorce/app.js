@@ -6,7 +6,7 @@ import ItemsRouter from "./routes/items.router.js";
 import ErrorHandlingMiddleware from "./middlewares/error-handling.middleware.js";
 
 const app = express();
-const PORT = 3018;
+const PORT = 3000;
 
 app.use(express.json());
 app.use(cookieParser());
