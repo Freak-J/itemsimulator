@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  accountId Int @id @default(autoincrement()) @map("accountId")
+  id String @unique @map("id")
+  password String @map("password")
+  passwordCheck String @map("passwordCheck")
+  name String @map("name")
+
+  character Character[]
+
+  @@map("Account")
+}
+
+model Character {
+  characterId Int @id @default(autoincrement()) @map("characterId")
+  accountId Int @map("accountId")
+  name String @map("name")
+  health Int @default(500)@map("health")
+  power Int @default(100) @map("power")
+  money Int @default(10000) @map("money")
+
+  account Account @relation(fields: [accountId], references: [accountId], onDelete: Cascade)
+
+  @@map("Character")
+}
+
+model Character_Inventory {
+  invenId Int @id @default(autoincrement()) @map("id")
+  characterId Int @map("characterId")
+  itemId Int @map("itemId")
+  name String @map("name")
+  count Int @map("count")
+
+  character Character @relation(fields: [characterId], references: [characterId], onDelete: Cascade)
+  item Item[]
+
+  @@map("Character_Inventory")
+}
+
+model Item {
+  itemId Int @id @default(autoincrement()) @map("itemId")
+  name String @map("name")
+  status Json @map("status")
+  price Int @map("price")
+
+  @@map("Item")
+}
+
+model Character_Equipment {
+  id Int @id @default(autoincrement()) @map("id")
+  characterId Int @map("characterId")
+  hat String @map("hat")
+  top String @map("top")
+  bottom String @map("bottom")
+  ring String @map("ring")
+  weapon String @map("weapon")
+
+  @@map("Character_Equipment")
+}
