@@ -45,9 +45,6 @@ model Character_Inventory {
   name String @map("name")
   count Int @map("count")
 
-  character Character @relation(fields: [characterId], references: [characterId], onDelete: Cascade)
-  item Item[]
-
   @@map("Character_Inventory")
 }
 
